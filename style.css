@@ -29,6 +29,7 @@ body{
     border:none;
     font-size: 16px;
     padding: 18px 20px;
+    color: white;
 }
 
 
@@ -42,6 +43,7 @@ body{
     font-size: 18px;
 }
 
+
 /*Content section styling*/
 content{
     padding: 30px 0;
@@ -50,37 +52,35 @@ content{
     justify-content: space-between;
 }
 
-.citi{
+
+.city{
     margin: 0;
     font-size: 38px;
     line-height: 48px;
 }
 
-.details{
+.information{
     font-size: 16px;
     line-height: 20px;
 }
 
 
-.details strong{
-    color: darkgray;
+.information strong{
+    color:lightskyblue;
 
 }
+
+
 
 /*temperature icon*/
 .temperature{
     display: flex;
 }
 
-.weather-app-icon{
-width: 88px;
-height: 88px;
-}
-
 .current-temp{
     font-size: 88px;
     font-weight: bold;
-    line-height: 88px;
+    line-height: 85px;
     margin-left: 10px;
 }
 
@@ -94,5 +94,9 @@ footer {
     padding: 30px;
     text-align: center;
     font-size: 15px;
+    color: lightgray;
+}
+
+footer a{
     color: lightgray;
 }
