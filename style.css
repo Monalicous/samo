@@ -39,7 +39,7 @@ body{
     border: none;
     border-radius: 8px;
     margin-left: 5px;
-    color: black;
+    color: darkslateblue;
     font-size: 18px;
 }
 
@@ -93,7 +93,7 @@ content{
 footer {
     padding: 30px;
     text-align: center;
-    font-size: 15px;
+    font-size: 13px;
     color: lightgray;
 }
 
