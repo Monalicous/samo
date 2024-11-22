@@ -51,9 +51,36 @@ function citySearch(city) {
     axios.get(apiUrl).then(updateWeather);
 }
 
+// Weather forecast for 4 days will be injected to html
+
+function weekForecast() {
+    let forecastElement = document.querySelector("#four-days-forecast");
+
+    let forecast = "";
+    let days = ['Mon', 'Tue', 'Wed', 'Thu'];
+
+    days.forEach(function (day) {
+        forecast = forecast + ` 
+        <div class="forecast">
+                    <div class="forecast-day">
+                        <div class="forecast-date">${day}</div>
+                        <div class="forecast-icon">☁️</div>
+                        <div class="forecast-temp">
+                            <div class="forecast-t"> <strong>20°</strong></div>
+                            <div class="forecast-temp"><strong>18°</strong></div>
+                        </div>
+                    </div>
+                </div>
+        `
+    });
+
+    forecastElement.innerHTML = forecast;
+}
+
 // Attach event listener to the search form
 let searchForm = document.querySelector("#city-search");
 searchForm.addEventListener("submit", submitForm);
 
 // Display default city on page load
 citySearch("Johannesburg");
+weekForecast();
