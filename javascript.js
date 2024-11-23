@@ -17,6 +17,8 @@ function updateWeather(response) {
     humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
     windElement.innerHTML = `${response.data.wind.speed} km/h`;
     currentTemperature.innerHTML = Math.round(temperature);
+
+    showForecast(response.data.city);
 }
 
 // Formats the current date and time
@@ -51,9 +53,17 @@ function citySearch(city) {
     axios.get(apiUrl).then(updateWeather);
 }
 
+// Api to get the weather forecast
+function showForecast(city) {
+    let key = "9a9b6ao3534d1b2afb7b49dddt30a6e7"
+    let url = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${key}&units=metric`;
+    axios.get(url).then(weekForecast);
+}
+
 // Weather forecast for 4 days will be injected to html
 
-function weekForecast() {
+function weekForecast(response) {
+    console.log(response.data);
     let forecastElement = document.querySelector("#four-days-forecast");
 
     let forecast = "";
@@ -83,4 +93,3 @@ searchForm.addEventListener("submit", submitForm);
 
 // Display default city on page load
 citySearch("Johannesburg");
-weekForecast();
