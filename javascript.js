@@ -35,6 +35,15 @@ function currentDate(date) {
     return `${day} ${hours}:${minutes}`;
 }
 
+//Format date for weather forecast
+
+function dateFormat(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+
+    return days[date.getDay()];
+}
+
 // Handles form submission
 function submitForm(event) {
     event.preventDefault();
@@ -67,21 +76,27 @@ function weekForecast(response) {
     let forecastElement = document.querySelector("#four-days-forecast");
 
     let forecast = "";
-    let days = ['Mon', 'Tue', 'Wed', 'Thu'];
 
-    days.forEach(function (day) {
-        forecast = forecast + ` 
+    response.data.daily.forEach(function (day, index) {
+        // Pulling the forecast for 4 days only
+        if (index < 4) {
+            forecast = forecast + ` 
         <div class="forecast">
-                    <div class="forecast-day">
-                        <div class="forecast-date">${day}</div>
-                        <div class="forecast-icon">☁️</div>
+            <div class="forecast-day">
+                <div class="forecast-date">${dateFormat(day.time)}</div>
+                        <img src = ${day.condition.icon_url} class="forecast-icon">
                         <div class="forecast-temp">
-                            <div class="forecast-t"> <strong>20°</strong></div>
-                            <div class="forecast-temp"><strong>18°</strong></div>
+                            <div class="forecast-temp">
+                            <strong>${Math.round(day.temperature.maximum)}°</strong>
+                            </div>
+                            <div class="forecast-temp">
+                            <strong>${Math.round(day.temperature.minimum)}°</strong>
+                            </div>
                         </div>
-                    </div>
-                </div>
+            </div>
+        </div>
         `
+        }
     });
 
     forecastElement.innerHTML = forecast;
